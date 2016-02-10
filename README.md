@@ -5,10 +5,10 @@ A [brainfuck][brainfuck] interpreter
 ### Usage
 ```shell
 Interpreter usage:
-  python bf.py <Sourcefile.bf> <Program input>
+  python3 bf.py <Sourcefile.bf> <Program input>
 
 Translator usage:
-  python bf.py <input.bf> <output.bf>'''
+  python3 bf.py <input.bf> <output.bf>'''
 ```
 
 ## Requires

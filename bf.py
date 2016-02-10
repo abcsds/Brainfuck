@@ -6,7 +6,7 @@ instr = ' '.join(sys.argv[2:])          # input string
 ### Verify input
 if len(sys.argv) < 2:
     print('''Usage:
-    python bf.py <Sourcefile.bf> <Program input>''')
+    python3 bf.py <Sourcefile.bf> <Program input>''')
     sys.exit(0)
 
 ### Initialize brainfuck code

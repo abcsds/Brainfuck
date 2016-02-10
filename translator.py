@@ -5,7 +5,7 @@ new  = ('→','←','↑','↓','↘','↙','↗','↖') # New set of instructio
 ### Verify input
 if len(sys.argv) != 3:
     print('''Usage:
-    python bf.py <input.bf> <output.bf>''')
+    python3 bf.py <input.bf> <output.bf>''')
     sys.exit(0)
 
 inFile  = sys.argv[1]
