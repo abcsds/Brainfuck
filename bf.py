@@ -1,5 +1,5 @@
 import sys
-sym = ('>','<','+','-','.',',','[',']')
+sym = ('>','<','+','-','.',',','[',']') # Origital set of instructions
 inf = sys.argv[1]                       # input file
 instr = ' '.join(sys.argv[2:])          # input string
 
