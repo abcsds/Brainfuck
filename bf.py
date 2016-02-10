@@ -6,7 +6,7 @@ instr = ' '.join(sys.argv[2:])          # input string
 ### Verify input
 if len(sys.argv) < 2:
     print('''Usage:
-    python bf.py <Sourcefile.bf>''')
+    python bf.py <Sourcefile.bf> <Program input>''')
     sys.exit(0)
 
 ### Initialize brainfuck code
@@ -15,14 +15,17 @@ n = 0                        # Length of main buffer
 ptr = 0                      # Program pointer
 loop = []                    # Loop buffer
 skipFlag = False             # Flag as loop helper
+inBuffer = list(' '.join(sys.argv[2:]))
+inBuffer.reverse()
 
 ### Read main program into a list of instructions
 with open(inf, 'r') as codeFile:
-    code=list(codeFile.read().replace('\n', ''))
-for i in code:
-    if i not in sym:
-        # code[i].remove() # TODO
-        continue
+    codeSource=list(codeFile.read().replace('\n', ''))
+code = []
+for i in codeSource:
+    if i in sym:
+        code.append(i)
+# print(code)
 code.append('/0')
 
 while True:
@@ -60,7 +63,14 @@ while True:
         ptr += 1
     elif code[ptr] == sym[5]:
         ''' Read item from stdin to buffer '''
-        pass # TODO: input disabled for now
+        try:
+            inChar = inBuffer.pop()
+            A[n] = int(inChar)
+        except ValueError:
+            print('''Error reading char''') # TODO: there shouldn't be any ValueError if oly code comes in.
+        except IndexError:
+            pass
+        ptr += 1
     elif code[ptr] == sym[6]:
         ''' Start loop, skip if current buffer is zero '''
         if A[n] != 0:
