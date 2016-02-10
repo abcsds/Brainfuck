@@ -33,14 +33,13 @@ while True:
         ptr += 1
         continue
     if code[ptr] == sym[0]:
-        ''' Move buffer up one '''
-        if len(A) >= n+1:
+        ''' Move buffer right one '''
+        if len(A) <= n+1:
             A.append(0)
         n+=1
         ptr += 1
-        # print(A[n])
     elif code[ptr] == sym[1]:
-        ''' Move buffer down one '''
+        ''' Move buffer left one '''
         if n > 0:
             n-=1
         ptr += 1
@@ -54,9 +53,7 @@ while True:
         ptr += 1
     elif code[ptr] == sym[4]:
         ''' Print current buffer '''
-        print(A[n], end="")
         try:
-            # sys.stdout.write(chr(A[n]+66))
             print(chr(A[n]), end="")
         except ValueError:
             pass
@@ -67,16 +64,18 @@ while True:
     elif code[ptr] == sym[6]:
         ''' Start loop, skip if current buffer is zero '''
         if A[n] != 0:
-            loop.append(code.index(i))
+            loop.append(ptr)
         else:
             skipFlag = True
         ptr += 1
     elif code[ptr] == sym[7]:
         ''' Loop: return to start of loop '''
-        ptr = loop.pop()
+        try:
+            ptr = loop.pop()
+        except IndexError:
+            ptr += 1
+            skipFlag = False # If loop list is empty, continue
     elif code[ptr] == '/0':
-        print()
-        print(A)
         sys.exit(0)
     else:
         ptr += 1
